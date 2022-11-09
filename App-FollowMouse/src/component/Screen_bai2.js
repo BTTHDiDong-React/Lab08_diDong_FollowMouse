@@ -15,46 +15,24 @@ const Screen_bai2 = () => {
         return Math.floor(Math.random() * (470 - 1)) + 1;
     }
 
-    let db = [
-        {
-            x: null,
-            y: null,
-            left: randomX(),
-            top: randomY(),
-        },
-        {
-            x: null,
-            y: null,
-            left: randomX(),
-            top: randomY(),
-        },
-        {
-            x: null,
-            y: null,
-            left: randomX(),
-            top: randomY(),
-        },
-        
-    ]
-    const [mouse, setMouse] = useState(db)
 
     const [mouse1, setMouse1] = useState({
         x: null,
         y: null,
-        left: randomX(),
-        top: randomY(),
+        left: new Animated.Value(randomX()),
+        top: new Animated.Value(randomY()),
     })
     const [mouse2, setMouse2] = useState({
         x: null,
         y: null,
-        left: randomX(),
-        top: randomY(),
+        left: new Animated.Value(randomX()),
+        top: new Animated.Value(randomY()),
     })
     const [mouse3, setMouse3] = useState({
         x: null,
         y: null,
-        left: randomX(),
-        top: randomY(),
+        left: new Animated.Value(randomX()),
+        top: new Animated.Value(randomY()),
     })
 
 
@@ -64,37 +42,44 @@ const Screen_bai2 = () => {
 
         let x = evt.nativeEvent.locationX;
         let y = evt.nativeEvent.locationY;
-        console.log("🚀 ~ file: Screen_bai2.js ~ line 44 ~ onPress ~ y ", y, `~  x - ${x} ~ ${randomX()}`)
-
-        // db.forEach(item => {
-        //     if (item.left === x && item.top === y) {
-                
-        //     } else {
-                
-        //     }
-        // });
 
     
     }
 
 let changeMouse = () => {
-    db.forEach(item => {
-        console.log("🚀 ~ file: Screen_bai2.js ~ line 82 ~ changeMouse ~ item", item)
-        item.left = randomX();
-        item.right = randomY()
-    });
-    setMouse(db)
+    // console.log("🚀 ~ file: Screen_bai2.js ~ line 52 ~ changeMouse ~ changeMouse", changeMouse)
+    let x = randomX();
+    let y = randomY();
+
+    setMouse1({
+        x: x,
+        y: y,
+        left: x,
+        top: y,
+    })
+    //
+    x = randomX();
+    y = randomY();
+
+    setMouse2({
+        x: x,
+        y: y,
+        left: x,
+        top: y,
+    })
+    //
+    x = randomX();
+    y = randomY();
+
+    setMouse3({
+        x: x,
+        y: y,
+        left: x,
+        top: y,
+    })
+    
 }
 
-// let renderItem = (item) => {
-//     return <Animated.Image source={IMAGE_MOUSE} style={[{
-//         width: 70, height: 70,
-//         position: 'absolute',
-//         left: item.left,
-//         top: item.top,
-//         // backgroundColor: '#f0f'
-//     }]} />
-// }
 
     return (
         <View
@@ -104,10 +89,7 @@ let changeMouse = () => {
             style={[{ backgroundColor: '#a33e1c' }, styles.flex_1]}
         >
             <StatusBar />
-            <TouchableOpacity 
-                onPress={() => changeMouse()}
-            >
-                
+            <TouchableOpacity onPress={() => changeMouse()} >
                 <Animated.Image source={IMAGE_MOUSE} style={[{
                     width: 70, height: 70,
                     position: 'absolute',
@@ -116,6 +98,7 @@ let changeMouse = () => {
                     // backgroundColor: '#f0f'
                 }]} />
             </TouchableOpacity>
+            <TouchableOpacity onPress={() => changeMouse()} >
             <Animated.Image source={IMAGE_MOUSE} style={[{
                 width: 70, height: 70,
                 position: 'absolute',
@@ -123,6 +106,8 @@ let changeMouse = () => {
                 top: mouse2.top,
                 // backgroundColor: '#f0f'
             }]} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => changeMouse()} >
             <Animated.Image source={IMAGE_MOUSE} style={[{
                 width: 70, height: 70,
                 position: 'absolute',
@@ -130,12 +115,7 @@ let changeMouse = () => {
                 top: mouse3.top,
                 // backgroundColor: '#f0f'
             }]} />
-
-            {/* <FlatList
-            data={db}
-            keyExtractor={index => index}
-            renderItem = {renderItem}
-            /> */}
+            </TouchableOpacity>
 
 
         </View>
