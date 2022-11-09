@@ -7,7 +7,7 @@ import Screen_bai3 from './src/component/Screen_bai3';
 
 export default function App() {
   return (
-    <Screen_bai1 />
+    <Screen_bai2 />
   );
 }
 
