@@ -65,7 +65,6 @@ export default function Screen_bai3() {
     useEffect(() => {
         let x = location.x - 40;
         let y = location.y - 40;
-
         if (x < 40) {
             x = 0
         }
@@ -93,21 +92,10 @@ export default function Screen_bai3() {
     }
     // sk bet mouse
     function getCatchMouse(locationM) {
-        console.log("🚀 ~ file: Screen_bai3.js ~ line 95 ~ getCatchMouse ~ getCatchMouse")
-        console.log("🚀 ~ file: Screen_bai3.js ~ line 93 ~ getCatchMouse ~ locationM", locationM)
+        // console.log("🚀 ~ file: Screen_bai3.js ~ line 95 ~ getCatchMouse ~ getCatchMouse")
+        // console.log("🚀 ~ file: Screen_bai3.js ~ line 93 ~ getCatchMouse ~ locationM", locationM)
         // console.log("🚀 ~ file: Screen_bai3.js ~ line 93 ~ getCatchMouse ~ locationM", location)
-
-
-
-        let fakeLeft = locationM.fakeLeft;
-        let fakeTop = locationM.fakeTop;
-
-        setlocation({
-            x : fakeLeft,
-            y : fakeTop
-        })
-        console.log("🚀 ~ file: Screen_bai3.js ~ line 138 ~ getCatchMouse ~ location", location)
-
+        
         //
         let x = randomX();
         let y = randomY();
@@ -135,6 +123,16 @@ export default function Screen_bai3() {
         })
 
 
+
+        let fakeLeft = locationM.fakeLeft;
+        let fakeTop = locationM.fakeTop;
+
+        setlocation({
+            x : fakeLeft,
+            y : fakeTop
+        })
+        
+        // console.log("🚀 ~ file: Screen_bai3.js ~ line 138 ~ getCatchMouse ~ location", location)
     }
 
 
