@@ -53,8 +53,8 @@ export default function Screen_bai3() {
 
         // cat di den diem click
         setlocation({
-            x: x,
-            y: y,
+            x,
+            y,
         })
 
         console.log('x - ', x, "  y - ", y);
@@ -65,6 +65,7 @@ export default function Screen_bai3() {
     useEffect(() => {
         let x = location.x - 40;
         let y = location.y - 40;
+
         if (x < 40) {
             x = 0
         }
@@ -72,23 +73,69 @@ export default function Screen_bai3() {
             y = 0
         }
 
-        let ani_X = Animated.timing(locationCat.fakeLeft, { toValue: x, duration: 2000, useNativeDriver: false });
-        let ani_Y = Animated.timing(locationCat.fakeTop, { toValue: y, duration: 2000, useNativeDriver: false });
+        let ani_X = Animated.timing(locationCat.fakeLeft, { toValue: x, duration: 1000, useNativeDriver: false });
+        let ani_Y = Animated.timing(locationCat.fakeTop, { toValue: y, duration: 1000, useNativeDriver: false });
 
+        locationCat.fakeLeft = x
+        locationCat.fakeTop = y
         Animated.parallel([ani_X, ani_Y]).start();
     }, [location])
 
     //
     const onMove = (evt) => {
-        console.log("🚀 ~ file: Screen_bai3.js ~ line 21 ~ onMove ~ onMove (🤠)")
+        // console.log("🚀 ~ file: Screen_bai3.js ~ line 21 ~ onMove ~ onMove (🤠)")
 
     }
     //
     const onRelease = () => {
-        console.log("🚀 ~ file: Screen_bai3.js ~ line 26 ~ onRelease ~ onRelease(😎)")
+        // console.log("🚀 ~ file: Screen_bai3.js ~ line 26 ~ onRelease ~ onRelease(😎)")
 
     }
-    // 
+    // sk bet mouse
+    function getCatchMouse(locationM) {
+        console.log("🚀 ~ file: Screen_bai3.js ~ line 95 ~ getCatchMouse ~ getCatchMouse")
+        console.log("🚀 ~ file: Screen_bai3.js ~ line 93 ~ getCatchMouse ~ locationM", locationM)
+        // console.log("🚀 ~ file: Screen_bai3.js ~ line 93 ~ getCatchMouse ~ locationM", location)
+
+
+
+        let fakeLeft = locationM.fakeLeft;
+        let fakeTop = locationM.fakeTop;
+
+        setlocation({
+            x : fakeLeft,
+            y : fakeTop
+        })
+        console.log("🚀 ~ file: Screen_bai3.js ~ line 138 ~ getCatchMouse ~ location", location)
+
+        //
+        let x = randomX();
+        let y = randomY();
+
+        setLocationM1({
+            fakeLeft: x,
+            fakeTop: y,
+        })
+        //
+        x = randomX();
+        y = randomY();
+
+        setLocationM2({
+            fakeLeft: x,
+            fakeTop: y,
+        })
+
+        //
+        x = randomX();
+        y = randomY();
+
+        setLocationM3({
+            fakeLeft: x,
+            fakeTop: y,
+        })
+
+
+    }
 
 
     return (
@@ -111,36 +158,41 @@ export default function Screen_bai3() {
             />
 
 
-            
-            <TouchableOpacity >
+
+            <TouchableOpacity onPress={() => getCatchMouse(locationM1)}>
                 <Animated.Image
                     source={IMAGE_MOUSE} style={[, {
                         width: 60, height: 60,
                         position: 'absolute',
                         top: locationM1.fakeTop,
                         left: locationM1.fakeLeft,
-                        backgroundColor: '#0f0'
+                        // backgroundColor: '#0f0'
                     }]}
                 />
             </TouchableOpacity>
-            <Animated.Image
-                source={IMAGE_MOUSE} style={[, {
-                    width: 60, height: 60,
-                    position: 'absolute',
-                    top: locationM2.fakeTop,
-                    left: locationM2.fakeLeft,
-                    // backgroundColor: '#0f0'
-                }]}
-            />
-            <Animated.Image
-                source={IMAGE_MOUSE} style={[, {
-                    width: 60, height: 60,
-                    position: 'absolute',
-                    top: locationM3.fakeTop,
-                    left: locationM3.fakeLeft,
-                    // backgroundColor: '#0f0'
-                }]}
-            />
+            <TouchableOpacity onPress={() => getCatchMouse(locationM2)}>
+                <Animated.Image
+                    source={IMAGE_MOUSE} style={[, {
+                        width: 60, height: 60,
+                        position: 'absolute',
+                        top: locationM2.fakeTop,
+                        left: locationM2.fakeLeft,
+                        // backgroundColor: '#0f0'
+                    }]}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => getCatchMouse(locationM3)}>
+                <Animated.Image
+                    source={IMAGE_MOUSE} style={[, {
+                        width: 60, height: 60,
+                        position: 'absolute',
+                        top: locationM3.fakeTop,
+                        left: locationM3.fakeLeft,
+                        // backgroundColor: '#0f0'
+                    }]}
+                />
+            </TouchableOpacity>
+        
 
 
         </View>
